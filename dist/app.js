@@ -1,3 +1,3 @@
 "use strict";
-const a = 10;
-console.log(a);
+const x = 15;
+console.log(x);
