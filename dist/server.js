@@ -16,7 +16,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = __importDefault(require("./app"));
 const config_1 = __importDefault(require("./app/config"));
-console.log('url:', config_1.default.database_url, 'Port:', config_1.default.port);
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {

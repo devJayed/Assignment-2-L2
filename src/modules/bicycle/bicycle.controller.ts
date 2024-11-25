@@ -1,12 +1,11 @@
-import { ProductModel } from './bicycle.models';
 import { Request, Response } from 'express';
 import { ProductServices } from './bicycle.service';
 
 const createProduct = async (req: Request, res: Response) => {
   try {
-    const product = req.body;
+    const {product: productData} = req.body;
     // will call service func to send this data
-    const result = await ProductServices.createProductIntoDB(product);
+    const result = await ProductServices.createProductIntoDB(productData);
     // send response
     res.status(200).json({
       success: true,

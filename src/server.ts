@@ -3,10 +3,9 @@ import mongoose from 'mongoose';
 import app from './app';
 import config from './app/config';
 
-console.log('url:', config.database_url, 'Port:', config.port);
-
 async function main() {
   try {
+    // await mongoose.connect('mongodb://localhost:27017/bicycleStore');
     await mongoose.connect(config.database_url as string);
     console.log('Database connected successfully');
 

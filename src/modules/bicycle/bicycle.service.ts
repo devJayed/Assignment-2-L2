@@ -1,4 +1,4 @@
-import { IProduct, IOrder } from './bicycle.interface';
+import { IProduct } from './bicycle.interface';
 import { ProductModel } from './bicycle.models';
 
 const createProductIntoDB = async (product: IProduct) => {
@@ -7,5 +7,5 @@ const createProductIntoDB = async (product: IProduct) => {
 };
 
 export const ProductServices = {
-    createProductIntoDB,
+  createProductIntoDB,
 };
