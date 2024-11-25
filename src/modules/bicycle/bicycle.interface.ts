@@ -1,3 +1,7 @@
+// 1. Create an interface representing a document in MongoDB.
+
+import { Types } from 'mongoose';
+
 export type IProduct = {
   name: string;
   brand: string;
@@ -8,7 +12,6 @@ export type IProduct = {
   inStock: boolean;
 };
 
-import { Types } from 'mongoose';
 export type IOrder = {
   email: string;
   product: Types.ObjectId;

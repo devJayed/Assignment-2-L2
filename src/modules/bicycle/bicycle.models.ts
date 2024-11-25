@@ -1,22 +1,24 @@
+// 2. Create a Schema corresponding to the document interface.
+// 3. Create a Model.
+
 import { Schema, model } from 'mongoose';
 import { IOrder, IProduct } from './bicycle.interface';
 
-// Create the schema for the Product model
 const productSchema = new Schema<IProduct>(
   {
     name: { type: String, required: true },
     brand: { type: String, required: true },
-    price: { type: Number, required: true, min: 0 }, // Validation for positive price
+    price: { type: Number, required: true, min: 0 },
     type: {
       type: String,
-      enum: ['Mountain', 'Road', 'Hybrid', 'BMX', 'Electric'], // Enum validation
+      enum: ['Mountain', 'Road', 'Hybrid', 'BMX', 'Electric'], 
       required: true,
     },
     description: { type: String, required: true },
-    quantity: { type: Number, required: true, min: 0 }, // Validation for non-negative quantity
+    quantity: { type: Number, required: true, min: 0 }, 
     inStock: { type: Boolean, required: true },
   },
-  { timestamps: true }, // Automatically adds createdAt and updatedAt fields
+  { timestamps: true }, 
 );
 
 const orderSchema = new Schema<IOrder>(
@@ -29,10 +31,10 @@ const orderSchema = new Schema<IOrder>(
   { timestamps: true },
 );
 
-
+// Export the Product model
+export const ProductModel = model<IProduct>('Product', productSchema);
 
 // Export the Order model
 export const OrderModel = model<IOrder>('Order', orderSchema);
 
-// Export the Product model
-export const ProductModel = model<IProduct>('Product', productSchema);
+
