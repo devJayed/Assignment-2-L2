@@ -5,8 +5,8 @@ import config from './app/config';
 
 async function main() {
   try {
-    // await mongoose.connect('mongodb://localhost:27017/bicycleStore');
-    await mongoose.connect(config.database_url as string);
+    await mongoose.connect('mongodb://localhost:27017/bicycleStore');
+    // await mongoose.connect(config.database_url as string);
     console.log('Database connected successfully');
 
     // Start the Express server

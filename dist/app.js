@@ -12,9 +12,4 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 //application routes
 app.use('/api/v1/products', bicycle_route_1.ProductRoutes);
-const getAController = (req, res) => {
-    const a = 10;
-    res.send(a);
-};
-app.get('/', getAController);
 exports.default = app;
