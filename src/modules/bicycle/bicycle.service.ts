@@ -1,5 +1,5 @@
-import { IProduct } from './bicycle.interface';
-import { ProductModel } from './bicycle.models';
+import { IOrder, IProduct } from './bicycle.interface';
+import { OrderModel, ProductModel } from './bicycle.models';
 
 const createProductIntoDB = async (product: IProduct) => {
   const result = await ProductModel.create(product);
@@ -12,12 +12,81 @@ const getAllProductsFromDB = async () => {
 };
 
 const getProductByIdFromDB = async (productId: string) => {
-  const product = await ProductModel.findOne({productId});
+  const product = await ProductModel.findOne({ productId });
   return product;
+};
+
+const updateProductByIdInDB = async (
+  productId: string,
+  updatedData: Partial<IProduct>,
+) => {
+  const updatedProduct = await ProductModel.findByIdAndUpdate(
+    productId,
+    { ...updatedData },
+    { new: true, runValidators: true }, // Return updated document and validate updates
+  );
+
+  return updatedProduct;
+};
+
+const deleteProductByIdFromDB = async (productId: string) => {
+  const deletedProduct = await ProductModel.findByIdAndDelete(productId);
+  return deletedProduct;
+};
+
+const placeOrderInDB = async (orderData: IOrder) => {
+  try {
+    // console.log('service.ts');
+    const { product: productId, quantity } = orderData;
+
+    // Log the inputs
+    // console.log('Order Data:', productId, quantity);
+
+    // Step 1: Find by `_id`
+    // console.log('Searching for the bicycle...');
+    const bicycle = await ProductModel.findById(productId);
+
+    // Step 2: bicycle exists?
+    if (!bicycle) {
+      throw new Error('Bicycle not found');
+    }
+    // console.log('Bicycle found:', bicycle);
+
+    // Step 3: Is enough stock? and Update inventory
+    if (bicycle.quantity >= quantity) {
+      console.log('Updating inventory...');
+      bicycle.quantity -= quantity;
+      if (bicycle.quantity === 0) {
+        bicycle.inStock = false;
+      }
+      await bicycle.save();
+      // console.log('Inventory updated:', bicycle);
+    } else {
+      throw new Error('Insufficient stock available');
+    }
+
+    // Step 5: Create the order
+    // console.log('Creating the order...');
+    const order = await OrderModel.create(orderData);
+    // console.log('Order created:', order);
+
+    // Return the created order
+    return order;
+  } catch (error) {
+    console.log('Error in placing order:', error);
+    throw new Error(
+      error instanceof Error ? error.message : 'Failed to place the order',
+    );
+  }
 };
 
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromDB,
   getProductByIdFromDB,
+  updateProductByIdInDB,
+  deleteProductByIdFromDB,
+};
+export const OrderServices = {
+  placeOrderInDB,
 };

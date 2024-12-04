@@ -1,12 +1,22 @@
 import express from 'express';
-import { ProductControllers } from './bicycle.controller';
+import { OrderControllers, ProductControllers } from './bicycle.controller';
 
-const router = express.Router();
+const routerProduct = express.Router();
+const routerOrder = express.Router();
 
-router.post('/create-product', ProductControllers.createProduct);
+routerProduct.post('/create-product', ProductControllers.createProduct);
 
-router.get('/', ProductControllers.getAllProducts);
+routerProduct.get('/', ProductControllers.getAllProducts);
 
-router.get('/:productId', ProductControllers.getProductById);
+routerProduct.get('/:productId', ProductControllers.getProductById);
 
-export const ProductRoutes = router;
+routerProduct.put('/:productId', ProductControllers.updateProductById);
+
+routerProduct.delete('/:productId', ProductControllers.deleteProductById);
+
+routerOrder.post('/', OrderControllers.placeOrder);
+console.log("routes.ts");
+
+export const ProductRoutes = routerProduct;
+
+export const OrderRoutes = routerOrder;
