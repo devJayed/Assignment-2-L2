@@ -143,6 +143,26 @@ const placeOrder = async (req: Request, res: Response) => {
     });
   }
 };
+const calculateRevenue = async (req: Request, res: Response) => {
+  try {
+    // Calculate revenue form DB
+    const totalRevenue = await OrderServices.calculateRevenueFromDB();
+
+    res.status(201).json({
+      message: 'Revenue calculated successfully',
+      status: true,
+      data: {
+        "totalRevenue": totalRevenue  
+    },
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: 'Failed to calculate revenue.',
+      status: false,
+      error: error,
+    });
+  }
+};
 
 export const ProductControllers = {
   createProduct,
@@ -153,4 +173,5 @@ export const ProductControllers = {
 };
 export const OrderControllers = {
   placeOrder,
+  calculateRevenue
 };

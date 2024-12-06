@@ -8,14 +8,16 @@ routerProduct.post('/create-product', ProductControllers.createProduct);
 
 routerProduct.get('/', ProductControllers.getAllProducts);
 
-routerProduct.get('/:productId', ProductControllers.getProductById);
+routerProduct.get('/:productId', ProductControllers.getProductById); 
 
-routerProduct.put('/:productId', ProductControllers.updateProductById);
+routerProduct.put('/:productId', ProductControllers.updateProductById); 
 
 routerProduct.delete('/:productId', ProductControllers.deleteProductById);
 
 routerOrder.post('/', OrderControllers.placeOrder);
-console.log("routes.ts");
+// console.log("routes.ts");
+
+routerOrder.get('/revenue', OrderControllers.calculateRevenue);
 
 export const ProductRoutes = routerProduct;
 

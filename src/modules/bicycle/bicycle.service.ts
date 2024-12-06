@@ -80,6 +80,35 @@ const placeOrderInDB = async (orderData: IOrder) => {
   }
 };
 
+const calculateRevenueFromDB = async (): Promise<number> => {
+  try {
+    const result = await OrderModel.aggregate([
+      {
+        $project: {
+          revenue: { $multiply: ['$quantity', '$totalPrice'] },
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          totalRevenue: { $sum: '$revenue' }, 
+        },
+      },
+      {
+        $project: {
+          _id: 0, 
+          totalRevenue: 1, 
+        },
+      },
+    ]);
+
+    return result.length > 0 ? result[0].totalRevenue : 0;
+  } catch (error) {
+    console.log('Error during revenue calculation:', error);
+    throw error;
+  }
+};
+
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromDB,
@@ -87,6 +116,8 @@ export const ProductServices = {
   updateProductByIdInDB,
   deleteProductByIdFromDB,
 };
+
 export const OrderServices = {
   placeOrderInDB,
+  calculateRevenueFromDB,
 };
