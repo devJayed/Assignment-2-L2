@@ -39,8 +39,8 @@ This express application with TypeScript integrates MongoDB with Mongoose to man
 ## Setup Instructions
 1. **Clone the repository**:
    ```bash
-   	git clone https://github.com/devJayed/Assignment-2-L2.git
-   	cd your-repo
+   git clone https://github.com/devJayed/Assignment-2-L2.git
+   cd your-repo
 2. **install dependencies**:
    ```bash
 	npm install
