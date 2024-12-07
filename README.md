@@ -1,1 +1,2 @@
-% My read me file
+# Bike Store Inventory Management System
+
