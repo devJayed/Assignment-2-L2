@@ -35,3 +35,21 @@ This express application with TypeScript integrates MongoDB with Mongoose to man
 - **Backend:** Node.js, Express
 - **Database:** MongoDB
 - **Others:** Mongoose
+
+## Setup Instructions
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/devJayed/Assignment-2-L2.git
+   cd your-repo
+2. **install dependencies**:
+   ```bash
+	npm install
+3. **Set up environment variables**:
+Create a .env file
+   ```bash
+	PORT=5000
+DATABASE_URL=mongodb+srv://devJayed:1104080jayed@cluster0.9ye7o.mongodb.net/L2-A2-BikeStore?retryWrites=true&w=majority&appName=Cluster0
+
+4. **Start the application**:
+   ```bash
+npm run dev
