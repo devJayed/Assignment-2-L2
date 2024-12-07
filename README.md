@@ -22,7 +22,6 @@ This express application with TypeScript integrates MongoDB with Mongoose to man
   Remove a bicycle from the inventory.  
   **Endpoint:** `DELETE /api/products/:productId`
 
-### Order Management
 - **Order a Bicycle**  
   Place an order for a bicycle.  
   **Endpoint:** `POST /api/orders`
